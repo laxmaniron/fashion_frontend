@@ -1,26 +1,72 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import AppNavbar from "./components/AppNavbar";
+import HomePage from "./components/HomePage";
+import DressModal from "./components/DressModal";
+import SearchResults from "./pages/SearchResults";
+import Register from "./components/auth/Register";
+import { Container } from "reactstrap";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { Provider as AlertProvider } from "react-alert";
+import { Provider } from "react-redux";
+import AlertTemplate from "react-alert-template-basic";
+
+import store from "./store";
+import { loadUser } from "./actions/authActions";
+import Login from "./components/auth/Login";
+import ShowProfile from "./components/auth/ShowProfile";
+import DressMainPage from "./components/dresspages/DressMainPage";
+import CartPage from "./components/dresspages/CartPage";
+import WishlistPage from "./components/dresspages/WishlistPage";
+import Alerts from "./components/Alerts";
+import Navbar from "./components/Navbar";
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
+
+//Alert Options
+
+const alertOptions = {
+  timeout: 5000,
+  position: "bottom center"
+};
+
+class App extends Component {
+  componentDidMount() {
+    store.dispatch(loadUser());
+  }
+
+  render() {
+    return (
+      <Provider store={store}>
+        <AlertProvider template={AlertTemplate} {...alertOptions}>
+          <Router>
+            <div className="App">
+              <Alerts />
+              <Switch>
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/home/:gender" component={HomePage} />
+                <Route exact path="/register" component={Register} />
+                <Route exact path="/ShowProfile/" component={ShowProfile} />
+                <Route
+                  exact
+                  path="/DressMainPage/:id"
+                  component={DressMainPage}
+                />
+                <Route exact path="/MainPage" component={SearchResults} />
+                <Route exact path="/cart" component={CartPage} />
+                <Route exact path="/wishlist" component={WishlistPage} />
+              </Switch>
+            </div>
+          </Router>
+        </AlertProvider>
+      </Provider>
+    );
+  }
 }
 
 export default App;

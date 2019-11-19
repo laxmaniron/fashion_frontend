@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css?family=Ubuntu&display=swap");
+
+.profilepic-showpro {
+  height: 200px;
+  clip-path: circle(50%);
+  margin-bottom: 50px;
+  /* margin-left: -50%; */
+}
+
+.showpro-details {
+  display: flex;
+  flex-wrap: wrap;
+  /* min-width: 500px; */
+  font-size: 2.25rem;
+  margin-left: 25%;
+  margin-right: 15%;
+  border: 5px solid rgb(245, 82, 109);
+}
+
+.showpro-details div {
+  display: flex;
+  min-width: 500px;
+  font-family: "Ubuntu", sans-serif;
+  /* border-bottom: 5px solid pink; */
+  margin-bottom: 15px;
+}
+.showpro-details div h3 {
+  display: flex;
+  min-width: 200px;
+  margin-left: 50px;
+}
+/* .showpro-details div span {
+
+} */
+
+.your-profile {
+  font-family: "Ubuntu", sans-serif;
+  font-size: 3.5rem;
+}
