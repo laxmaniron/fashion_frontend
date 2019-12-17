@@ -28,13 +28,13 @@ A fashion e-commerce website
 ![](images/fashion2.png)
 ![](images/fashion3.png)
 
-# Theatres in which a movie is being screened
+# Add apparels to wishlist
+![](images/fashion6.png)
+
+# Cart and checkout functionality
 ![](images/fashion4.png)
 
-# Seating Plan
+# Payment portal
 ![](images/fashion5.png)
-
-# Snacks and ticket confirmation
-![](images/fashion6.png)
 
 
