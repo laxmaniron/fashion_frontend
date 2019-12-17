@@ -22,11 +22,11 @@ A fashion e-commerce website
 # Search and filter apparels by brand,type,color
 ![](images/fashion1.png)
 
-# ChatBot Feature included
-![](images/fashion2.png)
 
-# Go through complete details of the movie
-![](images/fashion3.png)
+
+# Go through complete details of an apparel
+![](images/fashion2.png)
+![](images/fashion6.png)
 
 # Theatres in which a movie is being screened
 ![](images/fashion4.png)
