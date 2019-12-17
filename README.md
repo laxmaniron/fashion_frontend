@@ -5,7 +5,7 @@ A fashion e-commerce website
 # Quick Start
 
 --clone it and navigate to the cloned folder
---open terminal and type command $npm install
+--open terminal and type command $<b>npm install</b>
   and go to the below github link and download repository
   
   https://github.com/laxmaniron/soad_unofficial
