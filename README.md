@@ -26,7 +26,7 @@ A fashion e-commerce website
 
 # Go through complete details of an apparel
 ![](images/fashion2.png)
-![](images/fashion6.png)
+![](images/fashion3.png)
 
 # Theatres in which a movie is being screened
 ![](images/fashion4.png)
