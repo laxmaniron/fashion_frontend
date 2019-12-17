@@ -119,6 +119,7 @@ body {
   }
   &__icon-box {
     position: relative;
+    // transform: translateX(-rem);
   }
   &__icon {
     height: 2.75rem;
@@ -296,6 +297,10 @@ $grey-dark: #2b2b2b;
 $grey-light: #eee;
 $green: #86c023;
 $blue: #017ac7;
+
+$rccs-mastercard-background: linear-gradient(25deg, #b2dd30, #fbfbfb);
+
+// $rccs-visa-background: Defaults to linear-gradient(25deg, #0f509e, #1399cd);
 
 // Transition
 $duration: 400ms;
@@ -476,7 +481,7 @@ $easing: ease;
 .SearchItem__page {
   height: 90vh; //225vh;
   position: relative;
-  margin-top: 6.5rem;
+  margin-top: 8.5rem;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -495,6 +500,7 @@ $easing: ease;
       display: flex;
       flex-direction: column;
       align-items: flex-end;
+      flex-wrap: wrap;
 
       &__item {
         height: 12vh;
@@ -550,7 +556,10 @@ $easing: ease;
       font-size: 2.5rem;
     }
     &__colours {
-      overflow-x: scroll;
+      overflow-y: scroll;
+      // height: 200px;
+      height: 20vh;
+      // overflow-y: hidden;
       color: var(--color-primary);
     }
     &__size {
@@ -716,4 +725,218 @@ $easing: ease;
 }
 .red {
   color: red;
+}
+
+//payments
+// Homepage Styling
+
+.Homepage__page {
+  height: 160vh; //225vh;
+  position: relative;
+  margin-top: 6.5rem;
+  &__banner {
+    height: 55vh;
+    overflow: hidden;
+
+    img {
+      width: 69%;
+    }
+    margin-bottom: 10rem;
+  }
+  &__links {
+    height: 90vh;
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    &__left {
+      flex: 0 1 40%;
+      overflow: hidden;
+      height: 90vh;
+    }
+    &__right {
+      flex: 0 1 60%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      height: 70vh;
+      &__item {
+        flex: 0 1 50%;
+        overflow: hidden;
+
+        &__image {
+          width: 90%;
+          filter: blur(1px);
+        }
+        &__text {
+          position: absolute;
+          top: 30%;
+          left: 40%;
+          text-transform: uppercase;
+          font-family: Lato;
+          font-size: 2.1rem;
+          color: var(--color-grey-light-1);
+          letter-spacing: 1.5px;
+        }
+      }
+    }
+    &__item {
+      position: relative;
+      &__image {
+        filter: blur(1px);
+      }
+      &__text {
+        position: absolute;
+        top: 40%;
+        left: 20%;
+        text-transform: uppercase;
+        font-family: Lato;
+        font-size: 2.5rem;
+        color: var(--color-grey-light-1);
+        letter-spacing: 2px;
+      }
+      transition: all 0.5s;
+      z-index: 2;
+    }
+    &__item:hover {
+      transform: scale(1.05);
+      z-index: 5;
+    }
+  }
+}
+// Styling for Payments
+.Payment__page {
+  height: 90vh;
+  margin-top: 6.5rem;
+  &__content {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    &__left {
+      height: 100vh;
+      flex: 0 1 60%;
+      justify-content: space-evenly;
+      overflow-y: scroll;
+      display: flex;
+      flex-direction: row;
+
+      &::-webkit-scrollbar {
+        width: 0 !important;
+      }
+      & > * {
+        margin-right: 1rem;
+      }
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: flex-start;
+      &__left {
+        height: 90vh;
+        flex: 0 1 60%;
+        margin-top: 3rem;
+        overflow-y: scroll;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+
+        &::-webkit-scrollbar {
+          width: 0 !important;
+        }
+        & > * {
+          margin-right: 1rem;
+          margin-bottom: 2rem;
+        }
+      }
+      &__left div {
+        display: flex;
+        flex-direction: row;
+        margin-top: 1.5rem;
+      }
+      &__right {
+        flex: 0 1 40%;
+        height: 90vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        margin-top: 2rem;
+
+        overflow: scroll;
+
+        &::-webkit-scrollbar {
+          width: 0 !important;
+        }
+        & > * {
+          margin-right: 1rem;
+          margin-bottom: 2rem;
+          margin-top: 2rem;
+        }
+      }
+      &__right div {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 1.5rem;
+      }
+    }
+
+    &__right {
+      flex: 0 1 40%;
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      height: 60vh;
+      border: 1px solid var(--color-grey-dark-3);
+      align-items: center;
+      &__header {
+        margin-bottom: 4rem;
+        color: var(--color-primary);
+        align-self: stretch;
+        border-bottom: 1px solid var(--color-grey-dark-3);
+        width: 100%;
+      }
+      &__items {
+        font-size: 2rem;
+        flex: 0 1 10%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        margin-left: 2rem;
+        width: 90%;
+
+        &__images {
+          flex: 0 1 20%;
+          height: 20vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          overflow: hidden;
+        }
+        &__price {
+          font-size: 2rem;
+          flex: 0 1 10%;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+
+          margin-left: 2rem;
+          width: 60%;
+        }
+      }
+    }
+  }
+}
+.Payment__page__content__right__items__images__img {
+  flex-shrink: 0;
+  width: 72%;
+  height: 100%;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
 }

@@ -11,7 +11,8 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   SHOW_PROFILE,
-  EDIT_USERPROFILE
+  EDIT_USERPROFILE,
+  ADD_ADDRESS
 } from "./types";
 
 // Check token and load user
@@ -200,6 +201,44 @@ export const UpdateUserProfile = updatedprofile => (dispatch, getState) => {
       dispatch(
         returnErrors(err.response.data, err.response.status, "UPDATE_FAIL")
       )
+    );
+};
+
+export const addAddress = addressAdd => (dispatch, getState) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+
+  config.headers["x-auth-token"] = getState().auth.token;
+
+  // let body = new FormData();
+
+  // body.set("user", addressAdd.user);
+  // body.set("address", addressAdd.address);
+  // body.set("pincode", addressAdd.pincode);
+
+  // console.log(body);
+
+  // addAddress
+
+  const body = JSON.stringify({
+    user: addressAdd.user,
+    address: addressAdd.address,
+    pincode: addressAdd.pincode
+  });
+
+  axios
+    .put("/api/userinfo/addAddress", body, config)
+    .then(res => {
+      dispatch({
+        type: ADD_ADDRESS,
+        payload: res.data
+      });
+    })
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status, "ADD_FAIL"))
     );
 };
 

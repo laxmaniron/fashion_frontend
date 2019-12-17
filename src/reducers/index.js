@@ -6,6 +6,8 @@ import dressMainpageReducer from "./dressMainpageReducer";
 import cartReducer from "./cartReducer";
 import wishlistReducer from "./wishlistReducer";
 import messages from "./messages";
+import cardReducer from "./cardReducer";
+import orderReducer from "./orderReducer";
 
 export default combineReducers({
   dresses: dressReducer,
@@ -14,5 +16,7 @@ export default combineReducers({
   dressMainpageReducer: dressMainpageReducer,
   cart: cartReducer,
   wishlist: wishlistReducer,
-  messages: messages
+  messages: messages,
+  card: cardReducer,
+  order: orderReducer
 });

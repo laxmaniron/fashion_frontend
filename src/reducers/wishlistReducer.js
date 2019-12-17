@@ -4,6 +4,8 @@ import {
   DELETE_FROM_WISHLIST
 } from "../actions/types";
 
+import cartReducer from "./cartReducer";
+
 const initialState = {
   wishlists: []
 };
@@ -11,15 +13,17 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_WISHLIST:
+      console.log(action.payload);
       return {
         ...state,
         wishlists: action.payload,
         loading: false
       };
     case ADD_WISHLIST:
+      // console.log(action.payload);
       return {
         ...state,
-        wishlists: []
+        wishlists: [...state.wishlists, action.payload]
       };
 
     case DELETE_FROM_WISHLIST:

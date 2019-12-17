@@ -6,6 +6,9 @@ import { register } from "../../actions/authActions";
 import { Alert } from "reactstrap";
 import { clearErrors } from "../../actions/errorActions";
 
+import Navbar from "../Navbar";
+import Footer from "../Footer";
+
 export class Register extends Component {
   state = {
     username: "",
@@ -115,6 +118,7 @@ export class Register extends Component {
 
     return (
       <div className="whole_body2 body2">
+        <Navbar />
         <header className="header2">
           <div className="ls-container2">
             <h1 className="ls-container__login2" style={{ fontSize: "2.5rem" }}>
@@ -346,6 +350,7 @@ export class Register extends Component {
             </div>
           </form>
         </header>
+        <Footer />
       </div>
     );
   }

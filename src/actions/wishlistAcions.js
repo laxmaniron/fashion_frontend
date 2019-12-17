@@ -5,7 +5,8 @@ import {
   GET_WISHLIST,
   ADD_WISHLIST,
   DELETE_FROM_WISHLIST,
-  MOVE_TO_CART
+  MOVE_TO_CART,
+  INC_CART_COUNT
 } from "./types";
 import { createMessage } from "./messages";
 
@@ -27,13 +28,23 @@ export const addtoWishlist = (dress, userid) => dispatch => {
   axios
     .post("/api/wishlist/addtowishlist", { dressId: dress._id, userId: userid })
     .then(res => {
-      dispatch(
-        createMessage({ addedtoWishlist: "Added to Wishlist Successfully" })
-      );
-      dispatch({
-        type: ADD_WISHLIST,
-        payload: res.data
-      });
+      console.log("hi wishlist");
+      console.log(res.data);
+
+      if (res.data == "Item already in Wishlist") {
+        dispatch(
+          createMessage({ alreadyaddedtoWishlist: "Item already in wishlist" })
+        );
+      } else {
+        dispatch(
+          createMessage({ addedtoWishlist: "Added to Wishlist Successfully" })
+        );
+
+        dispatch({
+          type: ADD_WISHLIST,
+          payload: res.data
+        });
+      }
     })
     .catch(error => {
       console.log(error.response);
@@ -67,17 +78,47 @@ export const movetoCart = id => dispatch => {
       wishlistid: id
     })
     .then(res => {
-      dispatch(
-        createMessage({
-          MovedtoCart: "Moved to cart successfully"
-        })
-      );
-      dispatch({
-        type: DELETE_FROM_WISHLIST,
-        payload: id
-      });
+      if (res.data == "Item already in Cart") {
+        dispatch(createMessage({ alreadyInCart: "Item already in Cart" }));
+      } else {
+        dispatch(
+          createMessage({
+            MovedtoCart: "Moved to cart successfully"
+          })
+        );
+        dispatch({
+          type: DELETE_FROM_WISHLIST,
+          payload: id
+        });
+        dispatch({
+          type: INC_CART_COUNT,
+          payload: id
+        });
+      }
     })
     .catch(error => {
       console.log(error.response);
     });
 };
+
+export const cartCount = id => dispatch => {
+  dispatch({
+    type: INC_CART_COUNT,
+    payload: id
+  });
+};
+
+// if (res.data == "Item already in Wishlist") {
+//   dispatch(
+//     createMessage({ alreadyaddedtoWishlist: "Item already in wishlist" })
+//   );
+// } else {
+//   dispatch(
+//     createMessage({ addedtoWishlist: "Added to Wishlist Successfully" })
+//   );
+
+//   dispatch({
+//     type: ADD_WISHLIST,
+//     payload: res.data
+//   });
+// }

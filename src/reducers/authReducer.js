@@ -8,7 +8,8 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   SHOW_PROFILE,
-  EDIT_USERPROFILE
+  EDIT_USERPROFILE,
+  ADD_ADDRESS
 } from "../actions/types";
 
 const initialState = {
@@ -75,6 +76,11 @@ export default function(state = initialState, action) {
       };
 
     case EDIT_USERPROFILE:
+      return {
+        ...state,
+        user: action.payload
+      };
+    case ADD_ADDRESS:
       return {
         ...state,
         user: action.payload

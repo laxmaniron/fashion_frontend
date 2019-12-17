@@ -16,12 +16,12 @@ import Popup from "./Popup";
 
 // import "./dresses.css";
 
-class HomePage extends Component {
+class WomenHomePage extends Component {
   state = {
     totalResults: 0,
     currentPage: 1,
     nextpage: null,
-    gender: "Men",
+    gender: "Women",
     brand: [],
     category: [],
     color: [],
@@ -61,15 +61,13 @@ class HomePage extends Component {
     branddisplay: "none",
     brandZindex: "-1000",
     categorydisplay: "none",
-    categoryZindex: "-1000",
-    wishlistcount: 0,
-    cartcount: 0
+    categoryZindex: "-1000"
   };
 
   async componentDidMount() {
     const page = 1;
     // const { gender } = this.props.match.params;
-    const gender = "Men";
+    let gender = "Women";
     console.log(gender);
     const { limit, brand, category, color, maindisc, searchquery } = this.state;
     await this.props.getDresses(
@@ -83,8 +81,6 @@ class HomePage extends Component {
       searchquery
     );
   }
-
-  // await this.props.
 
   paginate = async pageNumber => {
     const {
@@ -808,11 +804,10 @@ class HomePage extends Component {
   }
 }
 
-HomePage.propTypes = {
+WomenHomePage.propTypes = {
   getDresses: PropTypes.func.isRequired,
   dresses: PropTypes.object.isRequired,
-  addtoCart: PropTypes.func.isRequired,
-  addtoWishlist: PropTypes.func.isRequired
+  addtoCart: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -824,4 +819,4 @@ export default connect(mapStateToProps, {
   getDresses,
   addtoCart,
   addtoWishlist
-})(HomePage);
+})(WomenHomePage);

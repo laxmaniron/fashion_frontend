@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import AppNavbar from "./components/AppNavbar";
 import HomePage from "./components/HomePage";
+import WomenHomePage from "./components/WomenHomePage";
+import KidsHomePage from "./components/KidsHomePage";
 import DressModal from "./components/DressModal";
 import SearchResults from "./pages/SearchResults";
 import Register from "./components/auth/Register";
@@ -20,6 +22,9 @@ import CartPage from "./components/dresspages/CartPage";
 import WishlistPage from "./components/dresspages/WishlistPage";
 import Alerts from "./components/Alerts";
 import Navbar from "./components/Navbar";
+import Zoomer from "./components/Zoomer";
+import paySmartComponent from "./components/payments/paySmartComponent";
+import StartPage from "./pages/StartPage";
 
 import {
   BrowserRouter as Router,
@@ -27,6 +32,7 @@ import {
   Switch,
   Redirect
 } from "react-router-dom";
+import Orders from "./components/payments/Orders";
 
 //Alert Options
 
@@ -49,7 +55,9 @@ class App extends Component {
               <Alerts />
               <Switch>
                 <Route exact path="/login" component={Login} />
-                <Route exact path="/home/:gender" component={HomePage} />
+                <Route exact path="/home/Men" component={HomePage} />
+                <Route exact path="/home/Women" component={WomenHomePage} />
+                <Route exact path="/home/Kids" component={KidsHomePage} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/ShowProfile/" component={ShowProfile} />
                 <Route
@@ -60,6 +68,10 @@ class App extends Component {
                 <Route exact path="/MainPage" component={SearchResults} />
                 <Route exact path="/cart" component={CartPage} />
                 <Route exact path="/wishlist" component={WishlistPage} />
+                <Route exact path="/zoomer" component={Zoomer} />
+                <Route exact path="/pay" component={paySmartComponent} />
+                <Route exact path="/start" component={StartPage} />
+                <Route exact path="/orders" component={Orders} />
               </Switch>
             </div>
           </Router>

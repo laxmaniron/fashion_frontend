@@ -22,11 +22,16 @@ export const addtoCart = (dress, userid) => dispatch => {
   axios
     .post("/api/cart/addtocart", { dressId: dress._id, userId: userid })
     .then(res => {
-      dispatch(createMessage({ addedtoCart: "Added to Cart Successfully" }));
-      dispatch({
-        type: ADD_CART,
-        payload: res.data
-      });
+      if (res.data == "Item already in Cart") {
+        dispatch(createMessage({ alreadyaddedtoCart: "Item already in Cart" }));
+      } else {
+        dispatch(createMessage({ addedtoCart: "Added to Cart Successfully" }));
+
+        dispatch({
+          type: ADD_CART,
+          payload: res.data
+        });
+      }
     })
     .catch(error => {
       console.log(error.response);

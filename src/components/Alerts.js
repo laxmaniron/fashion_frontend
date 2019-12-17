@@ -30,6 +30,22 @@ export class Alerts extends Component {
       if (message.deletedfromCart) {
         alert.success(message.deletedfromCart);
       }
+
+      if (message.alreadyaddedtoWishlist) {
+        alert.info(message.alreadyaddedtoWishlist);
+      }
+
+      if (message.alreadyaddedtoCart) {
+        alert.info(message.alreadyaddedtoCart);
+      }
+
+      if (message.alreadyInCart) {
+        alert.info(message.alreadyInCart);
+      }
+
+      if (message.LoginRequired) {
+        alert.info(message.LoginRequired);
+      }
     }
   }
   render() {

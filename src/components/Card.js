@@ -1,6 +1,8 @@
 import React from "react";
 import "./../App.css";
 import { Link } from "react-router-dom";
+import { createMessage } from "../actions/messages";
+import { connect } from "react-redux";
 import $ from "jquery";
 
 class Card extends React.Component {
@@ -28,14 +30,31 @@ class Card extends React.Component {
           </div>
           <div className="Card__buttons">
             <div
-              onClick={() => cartadd(dress, user.user._id)}
+              onClick={() =>
+                user.user
+                  ? cartadd(dress, user.user._id)
+                  : this.props.createMessage({
+                      LoginRequired: "Login Required"
+                    })
+              }
               className="btn btn--pink"
             >
+              {/* else {
+      this.props.createMessage({
+        LoginRequired: "Login Required"
+      });
+    } */}
               Add to Cart
             </div>
             <button
               className="btn btn--grey"
-              onClick={() => wishlistadd(dress, user.user._id)}
+              onClick={() =>
+                user.user
+                  ? wishlistadd(dress, user.user._id)
+                  : this.props.createMessage({
+                      LoginRequired: "Login Required"
+                    })
+              }
             >
               WishList
             </button>
@@ -54,4 +73,9 @@ class Card extends React.Component {
   }
 }
 
-export default Card;
+const mapStateToProps = state => ({
+  carts: state.cart.carts,
+  auth: state.auth
+});
+
+export default connect(mapStateToProps, { createMessage })(Card);

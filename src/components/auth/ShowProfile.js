@@ -8,6 +8,7 @@ import ReactTimeout from "react-timeout";
 import Navbar from "../Navbar";
 import AppNavbar from "../AppNavbar";
 import "./Showprofile.css";
+import Footer from "../Footer";
 
 // import "../../css/style.css";
 
@@ -170,8 +171,8 @@ export class ShowProfile extends Component {
           >
             Your Profile &nbsp;&nbsp;
             <i
-              style={{ cursor: "pointer" }}
-              onClick={this.onShowClick}
+              // style={{ cursor: "pointer" }}
+              // onClick={this.onShowClick}
               className="fas fa-user-edit"
             />
           </h2>
@@ -217,10 +218,7 @@ export class ShowProfile extends Component {
                       <h3>PhoneNumber &nbsp;:</h3>
                       <span>&nbsp; &nbsp;{this.props.userprofile.phoneno}</span>
                     </div>
-                    <div>
-                      <h3>Pincode &nbsp;:</h3>
-                      <span>&nbsp; &nbsp;{this.props.userprofile.pincode}</span>
-                    </div>
+
                     <div>
                       <h3>Email &nbsp;:</h3>
                       <span>&nbsp; &nbsp;{this.props.userprofile.email}</span>
@@ -374,7 +372,7 @@ export class ShowProfile extends Component {
             </div>
           )}
         </div>
-        <AppNavbar />
+        <Footer />
       </div>
     );
   }

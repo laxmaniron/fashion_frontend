@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import { login } from "../../actions/authActions";
 import { Alert } from "reactstrap";
 import "../../css/style.css";
+import Navbar from "../Navbar";
+import Footer from "../Footer";
 
 export class Login extends Component {
   state = {
@@ -46,7 +48,14 @@ export class Login extends Component {
     const { username, password } = this.state;
     return (
       <div className="whole_body body2">
-        <header className="header2 ">
+        <Navbar />
+        <header
+          className="header2 "
+          style={{
+            border: "1px solid var(--color-primary)",
+            marginBottom: "5rem"
+          }}
+        >
           <div className="ls-container2">
             <h1 className="ls-container__login2" style={{ fontSize: "2.5rem" }}>
               Login
@@ -100,6 +109,7 @@ export class Login extends Component {
             </div>
           </form>
         </header>
+        <Footer />
       </div>
     );
   }

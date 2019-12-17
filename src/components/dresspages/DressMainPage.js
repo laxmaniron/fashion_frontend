@@ -4,12 +4,14 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { getDressMaininfo } from "../../actions/dressMainActions";
 import { addtoCart } from "../../actions/cartActions";
 import { addtoWishlist } from "../../actions/wishlistAcions";
+import { createMessage } from "../../actions/messages";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import ReactTimeout from "react-timeout";
 import "../../css/image_align.css";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
+import Magnifier from "react-magnifier";
 
 class DressMainPage extends Component {
   setData = () => {
@@ -28,7 +30,8 @@ class DressMainPage extends Component {
       dresscurrentcolor: {},
       dressallcolor: [],
       colormodel: []
-    }
+    },
+    hdimageno: 0
   };
 
   static propTypes = {
@@ -50,20 +53,47 @@ class DressMainPage extends Component {
     this.setState({ alldata: alldata });
   };
 
+  hdImageChange = id => {
+    this.setState({ hdimageno: id });
+  };
+
   addcart = () => {
-    this.props.addtoCart(this.props.maindress.dress, this.props.auth.user._id);
+    if (this.props.auth.user) {
+      this.props.addtoCart(
+        this.props.maindress.dress,
+        this.props.auth.user._id
+      );
+    } else {
+      this.props.createMessage({
+        LoginRequired: "Login Required"
+      });
+    }
   };
 
   addwishlist = () => {
-    this.props.addtoWishlist(
-      this.props.maindress.dress,
-      this.props.auth.user._id
-    );
+    if (this.props.auth.user) {
+      this.props.addtoWishlist(
+        this.props.maindress.dress,
+        this.props.auth.user._id
+      );
+    } else {
+      this.props.createMessage({
+        LoginRequired: "Login Required"
+      });
+    }
   };
 
   render() {
-    let { alldata } = this.state;
+    let { alldata, hdimageno } = this.state;
     console.log(this.props.maindress);
+
+    let colorcount = alldata.colormodel.length;
+
+    let displaycount = 0;
+
+    if (colorcount >= 2) {
+      displaycount = 1;
+    }
 
     return (
       <div className="SearchItem">
@@ -73,10 +103,14 @@ class DressMainPage extends Component {
             <div className="SearchItem__page__images__small">
               {alldata.dresscurrentcolor.smallimageset
                 ? alldata.dresscurrentcolor.smallimageset.map(image => (
-                    <Fragment>
+                    <Fragment key={image}>
                       <img
                         src={image}
                         className="SearchItem__page__images__small__item"
+                        onClick={this.hdImageChange.bind(
+                          this,
+                          alldata.dresscurrentcolor.smallimageset.indexOf(image)
+                        )}
                       />
                     </Fragment>
                   ))
@@ -85,10 +119,17 @@ class DressMainPage extends Component {
 
             <div className="SearchItem__page__images__big">
               {alldata.dresscurrentcolor.hdimageset ? (
-                <img
-                  className="SearchItem__page__images__big__item"
-                  src={alldata.dresscurrentcolor.hdimageset[0]}
-                />
+                <Fragment>
+                  {/* className="SearchItem__page__images__big__item" */}
+                  <Magnifier
+                    src={alldata.dresscurrentcolor.hdimageset[hdimageno]}
+                    width={500}
+                    mgShape="square"
+                    zoomFactor="1.3"
+                    mgWidth={200}
+                    mgHeight={200}
+                  />
+                </Fragment>
               ) : null}
             </div>
           </div>
@@ -116,24 +157,30 @@ class DressMainPage extends Component {
                 </b>
                 &nbsp; <sub>inclusive of all taxes</sub>
               </div>
-              <div className="SearchItem__page__description__colours">
-                <h1>Available colors </h1>
+              {displaycount ? (
+                <div className="SearchItem__page__description__colours">
+                  <h1>Available colors </h1>
 
-                {alldata.colormodel.map(color => (
-                  <span
-                    key={color._id}
-                    onClick={this.colorChange.bind(this, color._id)}
-                  >
-                    <img
-                      className="SearchItem__page__images__small__item"
-                      src={color.color_dresspic}
-                    />
-                  </span>
-                ))}
-              </div>
+                  {alldata.colormodel.length
+                    ? alldata.colormodel.map(color =>
+                        color.color_dresspic ? (
+                          <span
+                            key={color._id}
+                            onClick={this.colorChange.bind(this, color._id)}
+                          >
+                            <img
+                              className="SearchItem__page__images__small__item"
+                              src={color.color_dresspic}
+                            />
+                          </span>
+                        ) : null
+                      )
+                    : null}
+                </div>
+              ) : null}
               <div className="SearchItem__page__description__size">
                 <div>
-                  <h1 class="SearchItem__page__description__size__title">
+                  <h1 className="SearchItem__page__description__size__title">
                     Select your size
                   </h1>
                 </div>
@@ -183,7 +230,10 @@ const mapStateToProps = state => ({
 });
 
 export default ReactTimeout(
-  connect(mapStateToProps, { getDressMaininfo, addtoCart, addtoWishlist })(
-    DressMainPage
-  )
+  connect(mapStateToProps, {
+    getDressMaininfo,
+    addtoCart,
+    addtoWishlist,
+    createMessage
+  })(DressMainPage)
 );
