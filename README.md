@@ -4,27 +4,23 @@ A fashion e-commerce website
 
 # Quick Start
 
---clone it and keep it in a python virtualenv
+--clone it and navigate to the cloned folder
+--open terminal and type command $npm install
+  and go to the below github link and download repository
+  
+  https://github.com/laxmaniron/soad_unofficial
+  and install it using npm install and connect to mongodb
+  
+  and then do
 
-# Install React dependencies
+  # npm start
 
-npm install
+  You are good to go
+  
+## Features
 
-# Install Python dependencies
-pip install --
-
-django,
-
-djangorestframework,
-
-Pillow,
-
-django-rest-knox,
-
-mysql-connector-python
-
-# Search movies by name 
-# Filter movies by Genre,Language
+# Search apparels by name,brand,color 
+# Filter movies by brand,type,color
 ![](images/fashion1.png)
 
 # ChatBot Feature included
