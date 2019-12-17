@@ -1,10 +1,10 @@
-# Show_time
+# Style My Way
 
-A movie booking website
+A fashion e-commerce website
 
 # Quick Start
 
-clone it and keep it in a python virtualenv
+--clone it and keep it in a python virtualenv
 
 # Install React dependencies
 
