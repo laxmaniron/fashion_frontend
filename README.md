@@ -19,8 +19,7 @@ A fashion e-commerce website
   
 ## Features
 
-# Search apparels by name,brand,color 
-# Filter movies by brand,type,color
+# Search and filter apparels by brand,type,color
 ![](images/fashion1.png)
 
 # ChatBot Feature included
