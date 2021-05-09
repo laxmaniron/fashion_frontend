@@ -25,20 +25,24 @@ import Navbar from "./components/Navbar";
 import Zoomer from "./components/Zoomer";
 import paySmartComponent from "./components/payments/paySmartComponent";
 import StartPage from "./pages/StartPage";
+// import Googleauth from "./components/googleLogin/Googleauth";
+// import CartCopy from "./components/dresspages/CartCopy";
 
 import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Redirect
+  Redirect,
 } from "react-router-dom";
 import Orders from "./components/payments/Orders";
+import CartCopy from "./components/dresspages/CartCopy";
+import Googleauth from "./components/googleLogin/Googleauth";
 
 //Alert Options
 
 const alertOptions = {
   timeout: 5000,
-  position: "bottom center"
+  position: "bottom center",
 };
 
 class App extends Component {
@@ -54,6 +58,7 @@ class App extends Component {
             <div className="App">
               <Alerts />
               <Switch>
+                <Route exact path="/googlelogin" compontent={Googleauth} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/home/Men" component={HomePage} />
                 <Route exact path="/home/Women" component={WomenHomePage} />
@@ -72,6 +77,7 @@ class App extends Component {
                 <Route exact path="/pay" component={paySmartComponent} />
                 <Route exact path="/start" component={StartPage} />
                 <Route exact path="/orders" component={Orders} />
+                <Route exact path="/cartcopy" component={CartCopy} />
               </Switch>
             </div>
           </Router>
